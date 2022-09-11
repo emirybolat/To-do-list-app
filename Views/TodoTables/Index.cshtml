@@ -1,0 +1,50 @@
+﻿@using ToDoListApp.Models
+@model List<TodoTable>
+
+<br />
+<div class="p-3 mb-2 bg-dark text-white">All Tasks</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Task</th>
+            <th scope="col">Urgent</th>
+            <th scope="col">Done</th>
+            <th scope="col">Transactions</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@(item.Urgent ? "Yes" : "No")</td>
+                <td>@(item.Done ? "Yes" : "No")</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Transactions
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="TransactionsMenu">
+                            <li>
+                                <a class="dropdown-item" href="/TodoTables/Urgent/@item.Id">@(item.Urgent ? "Unurgent" : "Urgent")</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/TodoTables/Done/@item.Id">@(item.Done ? "Undone" : "Done")</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    <a href="/TodoTables/Edit/@item.Id" class="btn btn-warning">Edit</a>
+                </td>
+                <td>
+                    <a href="/TodoTables/Delete/@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/TodoTables/Add" class="btn btn-primary">Add Task</a>

@@ -1,0 +1,20 @@
+﻿@model ToDoListApp.Models.TodoTable
+
+<br />
+<div class="p-3 mb-2 bg-dark text-white">Add Task</div>
+
+@using (Html.BeginForm("Edit", "TodoTables", FormMethod.Post)) {
+    <div class="form-group">
+        <label>Task Name:</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        <br>
+        <input type="checkbox" class="form-check-input" asp-for="@Model.Urgent" id="Urgent">
+        <label>Urgent</label>
+        <br>
+        <input type="checkbox" class="form-check-input" asp-for="@Model.Done" id="Done">
+        <label>Done</label>
+    </div>
+    <div>
+        <button href="/TodoTables/" class="btn btn-success">Save</button>
+    </div>
+}
